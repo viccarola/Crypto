@@ -11,3 +11,12 @@ st.title("Cryptocurrency Performance Dashboard")
 st.markdown("Analyze and visualize the performance of various cryptocurrencies over selected time periods")
 
 ALL = ["BTC-USD", "ETH-USD", "SOL-USD"]
+
+with st.sidebar:
+  st.header("Dashboard Settings")
+  coins = st.multiselect("Choose coins", ALL, default=["BTC-USD", "ETH-USD", "SOL-USD"])
+  start = st.date_input("Start date", pd.to_datetime("2022-01-01"))
+  end = st.date_input("End date", pd.Timestamp.today())
+  use_log = st.checkbox("Log scale (price)", value=False)
+
+st.divider()
