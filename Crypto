@@ -11,3 +11,22 @@ def get_crypto_data(days=30):
 
 start_date = dateime(2023, 1, 1)
 end_date = datetime.now()
+
+all_data = []
+for crypto in cryptos:
+    try:
+        data = yf.download(crypto, start=start_date, end=end_date, progress=False)
+        if not data.empty:
+            monthly_data = data.resample('M').last()
+            monthly_data['Coins'] = crypto
+            monthly_data = monthly_data.reset_index()
+            monthly_data['Date'] = monthly_data['Date'].dt.to_period('M').dt.to_timestamp()
+            monthly_data['Price'] = monthly_data['Close']
+            monthly_data['Market Cap'] = monthly_data['Close'] * ie9
+            all_data.append(monthly_data[['Date', 'Coin', 'Price', 'Market Cap']])
+    except Exception as e:
+        print(f"Error fetching {crypto}: {e}")
+
+
+
+            
