@@ -5,3 +5,9 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 
+def get_crypto_data(days=30):
+    """Fetch real-time crypto data from yfinance"""
+    cryptos = ['BTC-USD', 'ETH-USD', 'SOL-USD']
+
+start_date = dateime(2023, 1, 1)
+end_date = datetime.now()
