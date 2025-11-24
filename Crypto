@@ -65,4 +65,14 @@ def plot_data(selected_coins):
     if nont selected_coins:
         return px.line(title='No coins selected')
 
+    plot_df = period_data[period_data['Coin'].isin(selected_coins)]
+    plot_df['Date'] = pd.to_datetime(plot_df['Date'])
+    fig = px.line(plot_df, x='Date', y='Market Cap', color='Coin', markers=True,
+                    title='Market Cap Comparison of Selected Cryptocurrencies')
+    fig.update_layout(hovermode='x unified', yaxis_title='Market Cap (USD)')
+    return fig
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
     
