@@ -56,5 +56,13 @@ app.layout = dbc.Conatainer([
     ])
 ])
 
+@app.callback(
+    Output('price-graph', 'figure'),
+    Input('coin-dropdown', 'value')
+)
+def plot_data(selected_coins):
+    period_data = df.copy()
+    if nont selected_coins:
+        return px.line(title='No coins selected')
 
-
+    
