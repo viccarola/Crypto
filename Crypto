@@ -62,7 +62,7 @@ app.layout = dbc.Conatainer([
 )
 def plot_data(selected_coins):
     period_data = df.copy()
-    if nont selected_coins:
+    if not selected_coins:
         return px.line(title='No coins selected')
 
     plot_df = period_data[period_data['Coin'].isin(selected_coins)]
